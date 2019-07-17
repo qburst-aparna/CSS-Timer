@@ -1,0 +1,363 @@
+.wrapper {  
+  top: 16em;
+  width:37.75em;
+  font-size: 0.219em;
+  margin-left: 1.2em;
+  color: #b8e566;
+  border-radius: 30px;
+  text-align: center;
+  padding: 1.5em 1.1em 0.2em 0.75em;
+  position: absolute;
+}
+
+.box {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.timer-wrapper {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin-right: 3em;
+  position: relative;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.timer-wrapper:not(:first-child):before,
+.timer-wrapper:not(:first-child):after {
+  content: '';
+  position: absolute;
+  top: 1.6em;
+  left: -2.3em;
+  background: currentcolor;
+  width: 1.25em;
+  height: 1.25em;
+  border-radius: 50%;
+}
+ 
+.timer-wrapper:not(:first-child):after {
+  top: 3.3em;
+}
+
+.timer-wrapper:last-child {
+  margin-right: 0;
+}
+
+.digit {
+  display: inline-block;
+  line-height: 1;
+}
+
+.timer {
+  position: relative;
+  width: 5.85em;
+  text-align: center;
+  height: 5.85em;
+  overflow: hidden;  
+  margin-left: -0.4em;  
+}
+
+.timer .digit-wrapper {
+  font-size: 12em;
+  line-height: 1em;
+  position: absolute;
+  animation-timing-function: steps(1);
+  animation-iteration-count: infinite;
+}
+
+input[id="start"]:checked ~ .watchbox .timer.minutes.tens .digit-wrapper,
+input[id="stop"]:checked ~ .watchbox .timer.minutes.tens .digit-wrapper,
+input[id="start"]:checked ~ .watchbox .timer.seconds.tens .digit-wrapper,
+input[id="stop"]:checked ~ .watchbox .timer.seconds.tens .digit-wrapper {
+  animation-name: base6;
+}
+input[id="start"]:checked ~ .watchbox .timer.minutes.ones .digit-wrapper,
+input[id="stop"]:checked ~ .watchbox .timer.minutes.ones .digit-wrapper,
+input[id="start"]:checked ~ .watchbox .timer.seconds.ones .digit-wrapper,
+input[id="stop"]:checked ~ .watchbox .timer.seconds.ones .digit-wrapper,
+input[id="start"]:checked ~ .watchbox .timer.millisec.tens .digit-wrapper,
+input[id="stop"]:checked ~ .watchbox .timer.millisec.tens .digit-wrapper,
+input[id="start"]:checked ~ .watchbox .timer.millisec.ones .digit-wrapper,
+input[id="stop"]:checked ~ .watchbox .timer.millisec.ones .digit-wrapper { 
+  animation-name: base10;
+}
+
+input[id="stop"]:checked ~ .watchbox .timer.minutes.tens .digit-wrapper,
+input[id="stop"]:checked ~ .watchbox .timer.seconds.tens .digit-wrapper,
+input[id="stop"]:checked ~ .watchbox .timer.minutes.ones .digit-wrapper,
+input[id="stop"]:checked ~ .watchbox .timer.seconds.ones .digit-wrapper,
+input[id="stop"]:checked ~ .watchbox .timer.millisec.tens .digit-wrapper,
+input[id="stop"]:checked ~ .watchbox .timer.millisec.ones .digit-wrapper {
+  animation-play-state: paused;
+}
+
+
+.timer.minutes.tens .digit-wrapper {
+  animation-duration: 3600s;
+}
+.timer.minutes.ones .digit-wrapper {
+  animation-duration: 600s;
+}
+.timer.seconds.tens .digit-wrapper {
+  animation-duration: 60s;
+}
+.timer.seconds.ones .digit-wrapper {
+  animation-duration: 10s;
+}
+.timer.millisec.tens .digit-wrapper {  
+  animation-duration: 1s;
+}
+.timer.millisec.ones .digit-wrapper { 
+  animation-duration: 0.1s;
+}
+ 
+@keyframes base6 {
+  0% {
+    top: 0em;
+  }
+  16.66667% {
+    top: -1em;
+  }
+  33.33333% {
+    top: -2em;
+  }
+  50% {
+    top: -3em;
+  }
+  66.66667% {
+    top: -4em;
+  }
+  83.33333% {
+    top: -5em;
+  }
+}
+@keyframes base10 {
+  0% {
+    top: 0;
+  }
+  10% {
+    top: -1em;
+  }
+  20% {
+    top: -2em;
+  }
+  30% {
+    top: -3em;
+  }
+  40% {
+    top: -4em;
+  }
+  50% {
+    top: -5em;
+  }
+  60% {
+    top: -6em;
+  }
+  70% {
+    top: -7em;
+  }
+  80% {
+    top: -8em;
+  }
+  90% {
+    top: -9em;
+  }
+}
+ 
+.control {
+  font-family: monospace;
+  position: fixed;
+  top: 17em;
+  left: 50%;
+  margin-left: -9.2em;
+  cursor: pointer;
+  padding: 0.3125em 0.625em;
+  background-color: #BDC6BD;
+  font-size: 1.05rem;
+  text-align: center;
+  border-radius: 3px;
+  width: 3.125em;
+  z-index: 1;
+  transform: rotate(-27deg);
+}
+.control-start,
+.control-stop {
+  margin-left: 4.7em;
+  -ms-transform: rotate(27deg); /* IE 9 */
+  -webkit-transform: rotate(27deg); /* Safari 3-8 */
+  transform: rotate(27deg);
+}
+.control-start {
+  z-index: 2;
+}
+input[id="start"]:checked ~ .control-stop {
+  z-index: 3;
+}
+
+input[name="controls"] {
+  display: none;
+}
+
+html,
+body { 
+  margin: 0; 
+}
+
+html {
+  background-image: linear-gradient(to bottom right, #fff, #7c7abb);
+  height: 100%;
+}
+
+main {
+  margin-top: 12.5em;
+}
+
+footer {
+  bottom: 0;
+  margin: 0 auto 0 400px;
+  position: absolute;
+}
+
+.watchbox {
+  width: 400px;
+  height: 400px;
+  line-height: 300px;
+  z-index: 0;
+  animation-name: ring;
+  animation-duration: 3s;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
+  margin: 50px auto;
+}
+
+.timer-leg-left {
+  position: absolute;
+  transform: rotate(25deg);
+  width: 50px;
+  height: 100px;
+  border-radius: 300px;
+  position: absolute;
+  bottom: 35px;
+  left: 100px;
+  background-color: #737373;
+}
+
+.timer-leg-right {
+  position: absolute;
+  transform: rotate(-25deg);
+  width: 50px;
+  height: 100px;
+  border-radius: 300px;
+  position: absolute;
+  bottom: 35px;
+  right: 100px;
+  background-color: #737373;
+}
+
+.timer-ringer-base-left {
+  position: absolute;
+  transform: rotate(-30deg);
+  width: 15px;
+  height: 100px;
+  border-radius: 300px;
+  position: absolute;
+  top: 10px;
+  left: 110px;
+  background-color: #737373;
+}
+
+.timer-ringer-base-right {
+  position: absolute;
+  transform: rotate(30deg);
+  width: 15px;
+  height: 100px;
+  border-radius: 300px;
+  position: absolute;
+  top: 10px;
+  right: 110px;
+  background-color: #737373;
+}
+
+.timer-ringer-left {
+  position: absolute;
+  height: 50px;
+  width: 110px;
+  border-radius: 90px 90px 0 0;
+  -moz-border-radius: 90px 90px 0 0;
+  -webkit-border-radius: 90px 90px 0 0;
+  transform: rotate(-30deg);
+  top: 20px;
+  left: 55px;
+  background: #BDC6BD;
+}
+
+.timer-ringer-right {
+  position: absolute;
+  height: 50px;
+  width: 110px;
+  border-radius: 90px 90px 0 0;
+  -moz-border-radius: 90px 90px 0 0;
+  -webkit-border-radius: 90px 90px 0 0;
+  transform: rotate(30deg);
+  top: 20px;
+  right: 55px;
+  background: #BDC6BD;
+}
+
+.timer-ring-top {
+  border-radius: 18.75em;
+  position: absolute;
+  height: 6.25em;
+  width: 0.9375em;
+  top: 10px;
+  left: 195px;
+  background: #737373;
+}
+
+.timer-ring-top-circle {
+  border-radius: 18.75em;
+  position: absolute;
+  height: 1.875em;
+  width: 1.875em;
+  top: 0;
+  left: -7.5px;
+  background: #737373;
+}
+
+.timer-base {
+  background-color: #737373;
+  position: absolute;
+  top: 3.125em;
+  left: 3.125em;
+  width: 18.75em;
+  height: 18.75em;
+  border-radius: 18.75em;
+  z-index: 1;
+}
+
+.timer-base-inside {
+  background-color: #343535;
+  width: 15.625em;
+  height: 15.625em;
+  border-radius: 7.8125em;
+  text-align: center;
+  z-index: 2;
+  position: absolute;
+  top: 1.5625em;
+  left: 1.5625em;
+}
+
+@keyframes ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.flyingText {
+  font-family: 'Black Ops One', cursive;
+  color: #fff;
+  font-size: 5em;
+}
