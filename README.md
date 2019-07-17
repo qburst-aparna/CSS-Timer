@@ -1,1 +1,1 @@
-# CSS-TImer
+# A CSS only Timer
